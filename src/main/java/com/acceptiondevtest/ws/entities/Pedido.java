@@ -2,6 +2,7 @@ package com.acceptiondevtest.ws.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.List;
 
 public class Pedido implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -11,13 +12,13 @@ public class Pedido implements Serializable{
 	private LocalDate data;
 	private boolean faturado;
 	private Loja loja;
-	private Pagamento[] pagamentos;
+	private List<Pagamento> pagamentos;
 	
 	public Pedido() {
 		
 	}
 
-	public Pedido(String codigo, double valor, LocalDate data, boolean faturado, Loja loja, Pagamento[] pagamentos) {
+	public Pedido(String codigo, double valor, LocalDate data, boolean faturado, Loja loja, List<Pagamento> pagamentos) {
 		this.codigo = codigo;
 		this.valor = valor;
 		this.data = data;
@@ -66,11 +67,11 @@ public class Pedido implements Serializable{
 		this.loja = loja;
 	}
 
-	public Pagamento[] getPagamentos() {
+	public List<Pagamento> getPagamentos() {
 		return pagamentos;
 	}
 
-	public void setPagamentos(Pagamento[] pagamentos) {
+	public void setPagamentos(List<Pagamento> pagamentos) {
 		this.pagamentos = pagamentos;
 	};
 	
