@@ -1,8 +1,11 @@
 package com.acceptiondevtest.ws.entities;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Pedido {
+public class Pedido implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	private String codigo;
 	private double valor;
 	private LocalDate data;
