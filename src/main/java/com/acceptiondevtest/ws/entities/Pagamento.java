@@ -15,9 +15,9 @@ public class Pagamento implements Serializable{
 	private String tipo;
 	private TipoTransacao tipoTransacao;
 	private int parcelas;
-	@Id
 	private String cartao;
 	private String codigoAutorizacao;
+	@Id
 	private int nsu;
 	private Bandeira bandeira;
 	private double valor;
