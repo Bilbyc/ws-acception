@@ -1,21 +1,24 @@
 package com.acceptiondevtest.ws.entities;
 
+import com.acceptiondevtest.ws.entities.enums.Bandeira;
+import com.acceptiondevtest.ws.entities.enums.TipoTransacao;
+
 public class Pagamento {
 	private String tipo;
-	private String tipoTransacao;
+	private TipoTransacao tipoTransacao;
 	private int parcelas;
 	private String cartao;
 	private String codigoAutorizacao;
 	private int nsu;
-	private String bandeira;
+	private Bandeira bandeira;
 	private double valor;
 	
 	public Pagamento() {
 		
 	}
 
-	public Pagamento(String tipo, String tipoTransacao, int parcelas, String cartao, String codigoAutorizacao, int nsu,
-			String bandeira, double valor) {
+	public Pagamento(String tipo, TipoTransacao tipoTransacao, int parcelas, String cartao, String codigoAutorizacao, int nsu,
+			Bandeira bandeira, double valor) {
 		this.tipo = tipo;
 		this.tipoTransacao = tipoTransacao;
 		this.parcelas = parcelas;
@@ -34,11 +37,11 @@ public class Pagamento {
 		this.tipo = tipo;
 	}
 
-	public String getTipoTransacao() {
+	public TipoTransacao getTipoTransacao() {
 		return tipoTransacao;
 	}
 
-	public void setTipoTransacao(String tipoTransacao) {
+	public void setTipoTransacao(TipoTransacao tipoTransacao) {
 		this.tipoTransacao = tipoTransacao;
 	}
 
@@ -74,11 +77,11 @@ public class Pagamento {
 		this.nsu = nsu;
 	}
 
-	public String getBandeira() {
+	public Bandeira getBandeira() {
 		return bandeira;
 	}
 
-	public void setBandeira(String bandeira) {
+	public void setBandeira(Bandeira bandeira) {
 		this.bandeira = bandeira;
 	}
 
