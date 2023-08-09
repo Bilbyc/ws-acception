@@ -4,14 +4,24 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
+import jakarta.persistence.ElementCollection;
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Pedido implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
+	@Id
 	private String codigo;
 	private double valor;
 	private LocalDate data;
 	private boolean faturado;
 	private Loja loja;
+	@ElementCollection
+	@CollectionTable(name = "pagamento", joinColumns= @JoinColumn(name = "pedido_codigo"))
 	private List<Pagamento> pagamentos;
 	
 	public Pedido() {

@@ -1,12 +1,21 @@
 package com.acceptiondevtest.ws.entities;
 
+import java.io.Serializable;
+
 import com.acceptiondevtest.ws.entities.enums.Bandeira;
 import com.acceptiondevtest.ws.entities.enums.TipoTransacao;
 
-public class Pagamento {
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
+public class Pagamento implements Serializable{
+	private static final long serialVersionUID = 1L;
+	
 	private String tipo;
 	private TipoTransacao tipoTransacao;
 	private int parcelas;
+	@Id
 	private String cartao;
 	private String codigoAutorizacao;
 	private int nsu;

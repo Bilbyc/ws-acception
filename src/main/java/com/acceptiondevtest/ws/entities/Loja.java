@@ -1,7 +1,15 @@
 package com.acceptiondevtest.ws.entities;
 
-public class Loja {
+import java.io.Serializable;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
+public class Loja implements Serializable{
+	private static final long serialVersionUID = 1L;
 	private String codigo;
+	@Id
 	private String cnpj;
 	
 	public Loja() {
