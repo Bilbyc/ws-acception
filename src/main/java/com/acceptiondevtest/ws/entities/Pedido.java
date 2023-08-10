@@ -84,6 +84,8 @@ public class Pedido implements Serializable{
 	public List<Pagamento> getPagamentos() {
 		return pagamentos;
 	}
+	
+	public static String CSV_HEADER = "REGISTRO;DATA_ENVIO;DATA_REF\n";
 
 	
 }
