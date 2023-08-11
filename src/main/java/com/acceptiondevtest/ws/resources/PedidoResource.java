@@ -71,7 +71,15 @@ public class PedidoResource {
 					.build();
 			
 			List<Venda> sellsList = csvToBean.parse();
+<<<<<<< HEAD
 			
+=======
+			/*
+			for(Venda venda: sellsList) {
+				vendaService.insert(venda);
+			};
+			*/
+>>>>>>> 70f24769d4975c5ad67123c81e3db95f5c5e7332
 			vendaService.insertAll(sellsList);
 			
 			return ResponseEntity.ok().body("Arquivo CSV processado com sucesso.");
