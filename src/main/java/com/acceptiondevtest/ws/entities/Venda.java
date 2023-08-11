@@ -7,6 +7,7 @@ import com.acceptiondevtest.ws.entities.enums.Bandeira;
 import com.acceptiondevtest.ws.entities.enums.TipoTransacao;
 import com.opencsv.bean.CsvBindByPosition;
 import com.opencsv.bean.CsvDate;
+import com.opencsv.bean.CsvNumber;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -31,7 +32,6 @@ public class Venda implements Serializable{
 	@CsvBindByPosition(position = 2)
 	private String cartao;
 	
-	//@Id
 	@CsvBindByPosition(position = 3)
 	private String codigoAutorizacao;
 	
@@ -47,9 +47,11 @@ public class Venda implements Serializable{
 	@CsvBindByPosition(position = 7)
 	private TipoTransacao tipoTransacao;
 	
+	@CsvNumber(value = "#0,00")
 	@CsvBindByPosition(position = 8)
 	private double valorTransacao;
 	
+	@CsvNumber(value = "#0,00")
 	@CsvBindByPosition(position = 9)
 	private double taxaTransacao;
 		
