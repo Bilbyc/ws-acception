@@ -47,8 +47,8 @@ public class TestConfig implements CommandLineRunner {
 		
 		pagamentoRepository.saveAll(Arrays.asList(pagamento));
 				
-		Pedido p = new Pedido("P0000001", 100.0, LocalDate.now(), true, loja, pagamentos);
-		Pedido ped = new Pedido("P0000002", 50.0, LocalDate.now(), true, loja2, pagamentos2);
+		Pedido p = new Pedido("P0000001", 100.0, LocalDate.now().toString(), true, loja, pagamentos);
+		Pedido ped = new Pedido("P0000002", 50.0, LocalDate.now().toString(), true, loja2, pagamentos2);
 		
 		pedidoRepository.saveAll(Arrays.asList(p, ped));
 	}

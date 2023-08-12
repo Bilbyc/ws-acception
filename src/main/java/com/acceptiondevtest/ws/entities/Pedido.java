@@ -1,7 +1,6 @@
 package com.acceptiondevtest.ws.entities;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +18,7 @@ public class Pedido implements Serializable{
 	@Id
 	private String codigo;
 	private double valor;
-	private LocalDate data;
+	private String data;
 	private boolean faturado;
 	@ManyToOne
 	@JoinColumn(name = "loja_id")
@@ -32,7 +31,7 @@ public class Pedido implements Serializable{
 		
 	}
 
-	public Pedido(String codigo, double valor, LocalDate data, boolean faturado, Loja loja, List<Pagamento> pagamentos) {
+	public Pedido(String codigo, double valor, String data, boolean faturado, Loja loja, List<Pagamento> pagamentos) {
 		this.codigo = codigo;
 		this.valor = valor;
 		this.data = data;
@@ -57,11 +56,11 @@ public class Pedido implements Serializable{
 		this.valor = valor;
 	}
 
-	public LocalDate getData() {
+	public String getData() {
 		return data;
 	}
 
-	public void setData(LocalDate data) {
+	public void setData(String data) {
 		this.data = data;
 	}
 
