@@ -15,7 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 @RestController
-@RequestMapping(value = "ws/pedidos")
+@RequestMapping(value = "ws/pedido")
 public class PedidoResource {
 	
 	@Autowired
