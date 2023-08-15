@@ -20,6 +20,10 @@ public class Loja implements Serializable{
 		this.codigo = codigo;
 		this.cnpj = cnpj;
 	}
+	
+	public String[] toStringArray() {
+		return new String[]{codigo, cnpj};
+	}
 
 	public String getCodigo() {
 		return codigo;
@@ -36,7 +40,6 @@ public class Loja implements Serializable{
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
-	
-	
+			
 
 }

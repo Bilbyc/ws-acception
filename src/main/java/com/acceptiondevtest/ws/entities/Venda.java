@@ -10,17 +10,12 @@ import com.opencsv.bean.CsvDate;
 import com.opencsv.bean.CsvNumber;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class Venda implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
 	
 	@CsvBindByPosition(position = 0)
 	private int tipoRegistro;
@@ -35,6 +30,7 @@ public class Venda implements Serializable{
 	@CsvBindByPosition(position = 3)
 	private String codigoAutorizacao;
 	
+	@Id
 	@CsvBindByPosition(position = 4)
 	private int nsu;
 	
@@ -59,9 +55,8 @@ public class Venda implements Serializable{
 		
 	}
 
-	public Venda(Long id, int tipoRegistro, LocalDate dataVenda, String cartao, String codigoAutorizacao, int nsu,
+	public Venda(int tipoRegistro, LocalDate dataVenda, String cartao, String codigoAutorizacao, int nsu,
 			Bandeira bandeira, int parcelas, TipoTransacao tipoTransacao, double valorTransacao, double taxaTransacao) {
-		this.id = id;
 		this.tipoRegistro = tipoRegistro;
 		this.dataVenda = dataVenda;
 		this.cartao = cartao;
@@ -128,6 +123,7 @@ public class Venda implements Serializable{
 
 	public void setParcelas(int parcelas) {
 		this.parcelas = parcelas;
+		
 	}
 
 	public TipoTransacao getTipoTransacao() {
