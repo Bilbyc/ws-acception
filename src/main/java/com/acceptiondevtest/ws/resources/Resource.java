@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.acceptiondevtest.ws.entities.Pedido;
 import com.acceptiondevtest.ws.services.PedidoService;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.acceptiondevtest.ws.services.SftpService;
 
 
 @RestController
@@ -22,24 +21,22 @@ public class Resource {
 	private PedidoService service;
 	
 	@Autowired
-	private SftpResource sftp;
+	private SftpService sftp;
 	
 	
-	
-	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, value = "/pedido")
-	public ResponseEntity<String> insertMany(@RequestBody String obj) {
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, value = "/pedidos")
+	public ResponseEntity<String> insertMany(@RequestBody Pedido obj) {
 		try {
-			Pedido readValues = new ObjectMapper().readValue(
-					obj, new TypeReference<Pedido>() {});
 			
-			service.insert(readValues);
-						
+			service.insert(obj);
+			
 			return ResponseEntity.ok().body("Submissões processadas com sucesso.");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ResponseEntity.ok().body("Erro no recebimento das submissões");
 		}
 	};
+	
 	
 	@PostMapping(value = "/vendas")
 	public ResponseEntity<String> insertVendas() {
@@ -52,6 +49,6 @@ public class Resource {
 			e.printStackTrace();
 			return ResponseEntity.ok().body("Arquivo CSV com erros.");
 		}
-	
 	}
+	
 }
