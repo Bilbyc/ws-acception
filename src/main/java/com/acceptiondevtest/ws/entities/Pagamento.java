@@ -6,19 +6,26 @@ import com.acceptiondevtest.ws.entities.enums.Bandeira;
 import com.acceptiondevtest.ws.entities.enums.TipoTransacao;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 
 @Entity
 public class Pagamento implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private String tipo;
+	
+	@Enumerated(EnumType.STRING)
 	private TipoTransacao tipoTransacao;
 	private int parcelas;
 	private String cartao;
 	private String codigoAutorizacao;
 	@Id
 	private int nsu;
+	@Enumerated(EnumType.STRING)
 	private Bandeira bandeira;
 	private double valor;
 	
@@ -37,6 +44,12 @@ public class Pagamento implements Serializable{
 		this.bandeira = bandeira;
 		this.valor = valor;
 	}
+	
+	@PrePersist
+    @PreUpdate
+    public void formatDouble() {
+		this.valor = Math.round(this.valor / 100.0 * 100.0) / 100.0;
+    }
 
 	public String getTipo() {
 		return tipo;

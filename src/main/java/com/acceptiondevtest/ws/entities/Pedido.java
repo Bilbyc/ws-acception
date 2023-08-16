@@ -8,6 +8,8 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
@@ -21,10 +23,10 @@ public class Pedido implements Serializable{
 	private String data;
 	private boolean faturado;
 	@ManyToOne
-	@JoinColumn(name = "loja_id")
+	@JoinColumn(name = "loja_cnpj")
 	private Loja loja;
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "pedido_codigo")
+	@JoinColumn(name = "pedido_codigo")
 	private List<Pagamento> pagamentos = new ArrayList<>();
 	
 	public Pedido() {
@@ -33,13 +35,20 @@ public class Pedido implements Serializable{
 
 	public Pedido(String codigo, double valor, String data, boolean faturado, Loja loja, List<Pagamento> pagamentos) {
 		this.codigo = codigo;
-		this.valor = valor;
+		this.valor = valor/100;
 		this.data = data;
 		this.faturado = faturado;
 		this.loja = loja;
 		this.pagamentos = pagamentos;
 	}
-
+	
+	
+	@PrePersist
+    @PreUpdate
+    public void formatDouble() {
+		this.valor = Math.round(this.valor / 100.0 * 100.0) / 100.0;
+    }
+	
 	public String getCodigo() {
 		return codigo;
 	}

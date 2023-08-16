@@ -3,11 +3,9 @@ package com.acceptiondevtest.ws.entities;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+
 import com.acceptiondevtest.ws.entities.enums.Bandeira;
 import com.acceptiondevtest.ws.entities.enums.TipoTransacao;
-import com.opencsv.bean.CsvBindByPosition;
-import com.opencsv.bean.CsvDate;
-import com.opencsv.bean.CsvNumber;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -17,38 +15,17 @@ public class Venda implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	
-	@CsvBindByPosition(position = 0)
 	private int tipoRegistro;
-	
-	@CsvDate(value="ddMMyyyy")
-	@CsvBindByPosition(position = 1)
 	private LocalDate dataVenda;
-	
-	@CsvBindByPosition(position = 2)
 	private String cartao;
-	
-	@CsvBindByPosition(position = 3)
 	private String codigoAutorizacao;
 	
 	@Id
-	@CsvBindByPosition(position = 4)
 	private int nsu;
-	
-	@CsvBindByPosition(position = 5)
 	private Bandeira bandeira;
-	
-	@CsvBindByPosition(position = 6)
 	private int parcelas;
-	
-	@CsvBindByPosition(position = 7)
 	private TipoTransacao tipoTransacao;
-	
-	@CsvNumber(value = "#0,00")
-	@CsvBindByPosition(position = 8)
 	private double valorTransacao;
-	
-	@CsvNumber(value = "#0,00")
-	@CsvBindByPosition(position = 9)
 	private double taxaTransacao;
 		
 	public Venda() {
