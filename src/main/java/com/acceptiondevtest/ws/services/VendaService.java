@@ -12,16 +12,14 @@ import com.acceptiondevtest.ws.repositories.VendaRepository;
 public class VendaService {
 	@Autowired
 	private VendaRepository repository;
-	
+
 	public List<Venda> insertAll(List<Venda> obj) {
-		
+
 		return repository.saveAll(obj);
-		
 	};
-	
-public Venda insert(Venda obj) {
-		
+
+	public Venda insert(Venda obj) {
+
 		return repository.save(obj);
-		
 	};
 }
