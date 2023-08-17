@@ -2,6 +2,7 @@ package com.acceptiondevtest.ws.entities;
 
 import java.io.Serializable;
 
+
 import com.acceptiondevtest.ws.entities.enums.Bandeira;
 import com.acceptiondevtest.ws.entities.enums.TipoTransacao;
 
@@ -9,6 +10,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
 
@@ -17,17 +20,19 @@ public class Pagamento implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private String tipo;
-	
 	@Enumerated(EnumType.STRING)
 	private TipoTransacao tipoTransacao;
 	private int parcelas;
 	private String cartao;
-	private String codigoAutorizacao;
 	@Id
+	private String codigoAutorizacao;
 	private int nsu;
 	@Enumerated(EnumType.STRING)
 	private Bandeira bandeira;
 	private double valor;
+	@ManyToOne
+	@JoinColumn(name = "pedido_codigo")
+	private Pedido pedido;
 	
 	public Pagamento() {
 		
@@ -50,7 +55,7 @@ public class Pagamento implements Serializable{
     public void formatDouble() {
 		this.valor = Math.round(this.valor / 100.0 * 100.0) / 100.0;
     }
-
+	
 	public String getTipo() {
 		return tipo;
 	}
@@ -113,7 +118,15 @@ public class Pagamento implements Serializable{
 
 	public void setValor(double valor) {
 		this.valor = valor;
-	};
+	}
+
+	public Pedido getPedido() {
+		return pedido;
+	}
+
+	
+	
+	
 	
 	
 	
