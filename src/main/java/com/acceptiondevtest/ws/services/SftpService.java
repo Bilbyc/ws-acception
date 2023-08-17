@@ -1,6 +1,9 @@
 package com.acceptiondevtest.ws.services;
 
-import java.text.DecimalFormat;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -10,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.acceptiondevtest.ws.sftp.Sftp;
+import com.acceptiondevtest.ws.sftp.utils.CSVUtils;
+import com.acceptiondevtest.ws.entities.RegistroPagamento;
 import com.acceptiondevtest.ws.entities.Venda;
 import com.acceptiondevtest.ws.entities.enums.Bandeira;
 import com.acceptiondevtest.ws.entities.enums.TipoTransacao;
@@ -62,10 +67,21 @@ public class SftpService {
 		}
 	};
 	
-	public Double formatDecimalNum(Double num) {
-		DecimalFormat formatter = new DecimalFormat("#.##");
+	
+	public void sendData(List <RegistroPagamento> registros) throws IOException {
 		
-		return Double.parseDouble(formatter.format(num));
-	}
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		
+		RegistroPagamento[] registroArray = registros.toArray(new RegistroPagamento[registros.size()]);
+		
+		for (int i = 0; i < registroArray.length; i++) {
+			baos.write(CSVUtils.stringArrayToCSVLine(registroArray[i].toStringArray()).getBytes(StandardCharsets.UTF_8));
+		}
 
+		byte[] bytes = baos.toByteArray();
+
+		ByteArrayInputStream inputStream = new ByteArrayInputStream(bytes);
+
+		new Sftp().upload(inputStream, "/data/in", "ACC02" + ".csv");
+	};
 }
