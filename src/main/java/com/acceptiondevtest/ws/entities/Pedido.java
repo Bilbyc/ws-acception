@@ -1,8 +1,11 @@
 package com.acceptiondevtest.ws.entities;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.JoinColumn;
@@ -20,7 +23,8 @@ public class Pedido implements Serializable{
 	@Id
 	private String codigo;
 	private double valor;
-	private String data;
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	private LocalDate data;
 	private boolean faturado;
 	@ManyToOne
 	@JoinColumn(name = "loja_cnpj")
@@ -33,7 +37,7 @@ public class Pedido implements Serializable{
 		
 	}
 
-	public Pedido(String codigo, double valor, String data, boolean faturado, Loja loja, List<Pagamento> pagamentos) {
+	public Pedido(String codigo, double valor, LocalDate data, boolean faturado, Loja loja, List<Pagamento> pagamentos) {
 		this.codigo = codigo;
 		this.valor = valor/100;
 		this.data = data;
@@ -65,11 +69,11 @@ public class Pedido implements Serializable{
 		this.valor = valor;
 	}
 
-	public String getData() {
+	public LocalDate getData() {
 		return data;
 	}
 
-	public void setData(String data) {
+	public void setData(LocalDate data) {
 		this.data = data;
 	}
 

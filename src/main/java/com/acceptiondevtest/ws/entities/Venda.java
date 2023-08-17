@@ -8,6 +8,8 @@ import com.acceptiondevtest.ws.entities.enums.Bandeira;
 import com.acceptiondevtest.ws.entities.enums.TipoTransacao;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.Id;
 
 @Entity
@@ -22,8 +24,10 @@ public class Venda implements Serializable{
 	
 	@Id
 	private int nsu;
+	@Enumerated(EnumType.STRING)
 	private Bandeira bandeira;
 	private int parcelas;
+	@Enumerated(EnumType.STRING)
 	private TipoTransacao tipoTransacao;
 	private double valorTransacao;
 	private double taxaTransacao;
