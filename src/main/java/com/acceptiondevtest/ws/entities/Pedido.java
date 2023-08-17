@@ -97,7 +97,5 @@ public class Pedido implements Serializable{
 		return pagamentos;
 	}
 	
-	public static String CSV_HEADER = "REGISTRO;DATA_ENVIO;DATA_REF\n";
-
 	
 }

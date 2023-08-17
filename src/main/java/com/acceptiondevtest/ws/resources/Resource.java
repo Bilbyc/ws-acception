@@ -75,7 +75,7 @@ public class Resource {
 		}
 	};
 	
-	@PostMapping(value = "/setcsv")
+	@PostMapping(value = "/sendcsv")
 	public ResponseEntity<String> gerarArquivo() {
 		try {
 			
