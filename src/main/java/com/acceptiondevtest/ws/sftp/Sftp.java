@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.integration.sftp.session.DefaultSftpSessionFactory;
 import org.springframework.integration.sftp.session.SftpSession;
 import org.springframework.stereotype.Component;
@@ -14,22 +13,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class Sftp {
 	
-	@Value("${sftp.user}")
-	private String sftpUser;
-	
-	@Value("${sftp.pass}")
-	private String sftpPass;
-	
-	@Value("${sftp.host}")
-	private String sftpHost;
-	
 	public DefaultSftpSessionFactory getFactory() {
-		System.out.println("ENTROU AQ");
-		System.out.println(sftpUser);
 		DefaultSftpSessionFactory factory = new DefaultSftpSessionFactory();
-		factory.setHost(sftpHost);
-		factory.setUser(sftpUser);
-		factory.setPassword(sftpPass);
+		factory.setHost("192.168.0.133");
+		factory.setUser("acception");
+		factory.setPassword("@cceptiontest");
 		factory.setPort(2222);
 		factory.setAllowUnknownKeys(true);
 		return factory;
@@ -53,7 +41,6 @@ public class Sftp {
             }
             return stringBuilder.toString();
 
-            //return data;
         }
     }
 	
